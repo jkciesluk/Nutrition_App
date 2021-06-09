@@ -27,24 +27,26 @@ class _AddSelectedItemScreenState extends State<AddSelectedItemScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: () => Navigator.pop(context),),
-        title: Text('Add New Item'),
+        title: Text('Add New Item', ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 40.0,),
+        
+        padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 40.0,),
         
         child: Column(
+          
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Add New Item'),
+            Text('Add New Item', style: TextStyle(fontSize: 20, ),),
             SizedBox(height: 10),
             
-            Text('${product.name}'),
+            Text('${product.name}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),),
             
             SizedBox(height: 10),
-            Text('${product.kcal} kcal, ${product.protein} P, ${product.fat} F, ${product.carbs} C'),
-            Text('per 100g'),
+            Text('${product.kcal} kcal    ${product.protein} P    ${product.fat} F    ${product.carbs} C', style: TextStyle(fontSize: 16),),
+            Text('per 100g', style: TextStyle(fontSize: 14),),
             SizedBox(height: 10),
             TextFormField(
               decoration: InputDecoration(

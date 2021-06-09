@@ -1,0 +1,162 @@
+@startuml
+set namespaceSeparator ::
+
+class "Product" {
+  +String name
+  +int kcal
+  +int protein
+  +int fat
+  +int carbs
+  {static} +Product calculateProduct()
+  +Map<String, dynamic> toJson()
+}
+
+class "NewGoalScreen" {
+  +State<NewGoalScreen> createState()
+}
+
+class "_NewGoalScreenState" {
+  +TextEditingController kcalController
+  +TextEditingController proteinController
+  +TextEditingController fatController
+  +TextEditingController carbsController
+  +void dispose()
+  +Widget build()
+}
+
+
+class "CalculatorScreen" {
+  +State<CalculatorScreen> createState()
+}
+
+class "_CalculatorScreenState" {
+  +TextEditingController weightController
+  +TextEditingController heightController
+  +TextEditingController ageController
+  +TextEditingController activityController
+  +void dispose()
+  +Widget build()
+}
+
+"_DailyNutritionState" o-- "CalculatorScreen"
+"CalculatorScreen" o-- "_CalculatorScreenState"
+"_DailyNutritionState" o-- "DailyNeeds"
+"MyApp" o-- "DailyNutrition"
+"NewGoalScreen" o-- "_NewGoalScreenState"
+"_DailyNutritionState" o-- "NewGoalScreen"
+"_NewGoalScreenState" o-- "DailyNeeds"
+"_CalculatorScreenState" o-- "DailyNeeds"
+"_DailyNutritionState" o-- "AddItemScreen"
+"AddItemScreen" o-- "_AddItemScreenState"
+"DailyNutrition" o-- "_DailyNutritionState"
+"AddSuggestionScreen" o-- "_AddSuggestionScreenState"
+"_AddSuggestionScreenState" o-- "SortableProduct"
+"AddSelectedItemScreen" o-- "_AddSelectedItemScreenState"
+"_DailyNutritionState" o-- "Footer"
+"_AddItemScreenState" o-- "AddSuggestionScreen"
+"_AddItemScreenState" o-- "AddSelectedItemScreen"
+
+class "SortableProduct" {
+  +Product product
+  +double sLevel
+  +Map<String, dynamic> toJson()
+}
+
+"SortableProduct" o-- "Product"
+
+class "Footer" {
+  -Widget _buildField()
+  +Widget build()
+}
+
+class "DailyNutrition" {
+  +_DailyNutritionState createState()
+}
+
+class "_DailyNutritionState" {
+  -List<Product> _eatenToday
+  +void initState()
+  -void _saveDailyNeeds()
+  -void _readDailyNeeds()
+  -void _saveObjects()
+  -void _readObjects()
+  -Widget _buildProductTile()
+  -Widget _buildList()
+  +Widget build()
+  -void _clearAllButtonCall()
+  -void _clearAllItems()
+  -void _removeItem()
+  -void _pushSearchPage()
+  -void _pushCalculator()
+  -void _pushNewGoal()
+}
+
+class "AddSelectedItemScreen" {
+  +Product product
+  +_AddSelectedItemScreenState createState()
+}
+
+"AddSelectedItemScreen" o-- "Product"
+
+class "_AddSelectedItemScreenState" {
+  +TextEditingController weightController
+  +Product product
+  +void dispose()
+  +Widget build()
+}
+
+"_AddSelectedItemScreenState" o-- "Product"
+
+
+class "DailyNeeds" {
+  +int kcal
+  +int protein
+  +int fat
+  +int carbs
+  +Map<String, dynamic> toJson()
+  {static} -double _calculateBMR()
+  {static} +DailyNeeds calculateDailyNeeds()
+  {static} +DailyNeeds calculatefromKcal()
+  {static} +DailyNeeds calculateTotal()
+}
+
+class "AddSuggestionScreen" {
+  +State<AddSuggestionScreen> createState()
+}
+
+class "_AddSuggestionScreenState" {
+  +TextEditingController nameController
+  +TextEditingController kcalController
+  +TextEditingController proteinController
+  +TextEditingController fatController
+  +TextEditingController carbsController
+  +void dispose()
+  +Widget build()
+}
+
+
+class "AddItemScreen" {
+  +_AddItemScreenState createState()
+}
+
+class "_AddItemScreenState" {
+  -List<Product> _newItems
+  -List<SortableProduct> _suggestions
+  +void initState()
+  -void _saveSuggestions()
+  -void _readSuggestions()
+  +Widget build()
+  -void _sortSuggestions()
+  -Widget _buildSuggestion()
+  -void _addItem()
+  -void _removeSuggestion()
+  -void _addSuggestion()
+  -Widget _buildSuggestionList()
+}
+
+class "MyApp" {
+  +Widget build()
+}
+
+
+@enduml

@@ -105,7 +105,7 @@ class _DailyNutritionState extends State<DailyNutrition> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Z tym projektem'),
+        title: Text('Nutrition App'),
         actions: [
           IconButton(onPressed: _pushCalculator, icon: Icon(Icons.calculate)),
           IconButton(onPressed: _pushNewGoal, icon: Icon(Icons.settings)),
@@ -233,38 +233,3 @@ class _DailyNutritionState extends State<DailyNutrition> {
 }
 
 
-
-/*
-
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
-  
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/saved.txt');
-  }
-
-  Future<File> _writeProducts(Product product) async {
-  final file = await _localFile;
-  
-  // Write the file
-  return file.writeAsString(product.toString());
-}
-
-Future<Product> _readProducts() async {
-  try {
-    final file = await _localFile;
-
-    // Read the file
-    final contents = await file.readAsString();
-
-    return Product.parse(contents);
-  } catch (e) {
-    // If encountering an error, return 0
-    return 0;
-  }
-}
-
-*/

@@ -62,6 +62,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
         title: TextFormField(
                     autofocus: true,
                     onChanged: _sortSuggestions,
+                    textCapitalization: TextCapitalization.words,
                     decoration: InputDecoration(
                       hintText: " Search...",
                       border: InputBorder.none,
