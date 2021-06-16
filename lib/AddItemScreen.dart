@@ -166,12 +166,6 @@ class _AddItemScreenState extends State<AddItemScreen> {
   }
 
   Widget _buildSuggestionList() {
-    //  _suggestions.add(SortableProduct(Product('Chicken Breast', 120, 22, 5,0), 0));
-    //  _suggestions.add(SortableProduct(Product('Apple', 50, 1, 1, 17), 0));
-    // _suggestions.add(SortableProduct(Product('White Rice', 350, 9, 3, 70),0));
-    
-    
-
     return ListView.builder(
       padding: EdgeInsets.all(16),
       itemCount: _suggestions.length * 2,

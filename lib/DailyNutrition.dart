@@ -57,7 +57,7 @@ class _DailyNutritionState extends State<DailyNutrition> {
 
   void _readObjects () async {
     final String savedKey = 'productsEatenToday';
-    SharedPreferences sp = await SharedPreferences.getInstance();
+    SharedPreferences sp = await SharedPreferences.getInstance(); 
       final toDecode = sp.getString(savedKey);
       setState(() {
         
