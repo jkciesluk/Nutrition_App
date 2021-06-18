@@ -78,6 +78,8 @@ class "_DailyNutritionState" {
   +void initState()
   -void _saveDailyNeeds()
   -void _readDailyNeeds()
+  -void _saveDate()
+  -void _readDate()
   -void _saveObjects()
   -void _readObjects()
   -Widget _buildProductTile()

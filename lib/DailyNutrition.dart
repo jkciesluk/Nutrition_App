@@ -25,8 +25,35 @@ class _DailyNutritionState extends State<DailyNutrition> {
     super.initState();
     _readDailyNeeds();
     _readObjects();
+    _readDate();
+    _readObjects();
+    
   }
 
+
+  void _saveDate () async {
+    final String savedKey = 'date';
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    sp.setString(savedKey, jsonEncode(DateTime.now().toIso8601String()));
+  }
+
+
+  void _readDate () async {
+    final String savedKey = 'date';
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    final toDecode = sp.getString(savedKey);
+    setState(() {
+    
+    if(toDecode!= null) {  
+      final oldDate =  DateTime.parse(toDecode);
+      final DateTime date = DateTime.now();
+    
+      if (oldDate.day != date.day || oldDate.month != date.day || oldDate.year != date.year) {
+      _clearAllItems();
+      }
+    }
+    });
+  }
 
   void _saveDailyNeeds () async {
     final String savedKey = 'dailyNeeds';
@@ -151,6 +178,7 @@ class _DailyNutritionState extends State<DailyNutrition> {
     setState(() {
       _eatenToday.clear();
       _saveObjects();
+      _saveDate();
     });
     Navigator.pop(context);
   }
@@ -176,6 +204,7 @@ class _DailyNutritionState extends State<DailyNutrition> {
                             setState(() {
                               _eatenToday.remove(product); 
                               _saveObjects();
+                              _saveDate();
                               Navigator.pop(context);
                           });
                           }, 
@@ -201,6 +230,7 @@ class _DailyNutritionState extends State<DailyNutrition> {
               if(result != null)
                 _eatenToday.addAll(result);
                 _saveObjects();
+                _saveDate();
             });
   }
 
