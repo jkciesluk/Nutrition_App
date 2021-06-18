@@ -23,6 +23,7 @@ class _DailyNutritionState extends State<DailyNutrition> {
   //@mustCallSuper
   void initState() {
     super.initState();
+    _saveDate();
     _readDailyNeeds();
     _readObjects();
     _readDate();
@@ -34,9 +35,8 @@ class _DailyNutritionState extends State<DailyNutrition> {
   void _saveDate () async {
     final String savedKey = 'date';
     SharedPreferences sp = await SharedPreferences.getInstance();
-    sp.setString(savedKey, jsonEncode(DateTime.now().toIso8601String()));
+    sp.setString(savedKey, DateTime.now().day.toString());
   }
-
 
   void _readDate () async {
     final String savedKey = 'date';
@@ -45,10 +45,10 @@ class _DailyNutritionState extends State<DailyNutrition> {
     setState(() {
     
     if(toDecode!= null) {  
-      final oldDate =  DateTime.parse(toDecode);
+      final oldDate =  int.parse(toDecode);
       final DateTime date = DateTime.now();
     
-      if (oldDate.day != date.day || oldDate.month != date.day || oldDate.year != date.year) {
+      if (oldDate != date.day) {
       _clearAllItems();
       }
     }
